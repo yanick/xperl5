@@ -21,7 +21,7 @@ can_ok($module, 'reset_name') or BAIL_OUT("Missing package $module with sub sub 
 my $robot = $module->new;
 my $name = $robot->name;
 
-ok $robot->name =~ /[A-Z]{2}[0-9]{3}/, 'Name should match schema';
+like $robot->name, qr/[A-Z]{2}[0-9]{3}/, 'Name should match schema';
 is $name, $robot->name, 'Name should be persistent';
 ok $robot->name ne $module->new->name, 'Robots should have different names';
 ok $robot->reset_name ne $name, 'reset_name should change the robot name';
